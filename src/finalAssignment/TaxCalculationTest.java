@@ -9,11 +9,14 @@ public class TaxCalculationTest {
 		TaxCalculation sal5 = new TaxCalculation(12000);
 		TaxCalculation sal6 = new TaxCalculation(38000);
 		
-		System.out.println("| SALARY |"+ sal1.getSalary() + "| TAX | " + sal1.calculateTaxAlternative() + "|");
-		System.out.println("| SALARY |"+ sal2.getSalary() + "| TAX | " + sal2.calculateTaxAlternative() + "|");
-		//System.out.println("| SALARY |"+ sal3.getSalary() + "| TAX | " + sal3.calculateTax() + "|");
-		System.out.println("| SALARY |"+ sal3.getSalary() + "| TAX | " + sal3.calculateTaxAlternative() + "|");
-		System.out.println("| SALARY |"+ sal4.getSalary() + "| TAX | " + sal4.calculateTaxAlternative() + "|");
+		System.out.println("| SALARY | " + "  TAX  " + " | SALARY AFTER TAX |");
+		System.out.println("  "+ sal1.getSalary() + "   " + sal1.calculateTax() + "  \t " + sal1.calculateAfterTax());
+		System.out.println("  "+ sal2.getSalary() + "   " + sal2.calculateTax() + "  \t " + sal2.calculateAfterTax());
+		System.out.println("  "+ sal3.getSalary() + "   " + sal3.calculateTax() + "  \t " + sal3.calculateAfterTax());
+		System.out.println("  "+ sal4.getSalary() + "  " + sal4.calculateTax() + "  \t " + sal4.calculateAfterTax());
+		System.out.println("  "+ sal5.getSalary() + "   " + sal5.calculateTax() + "  \t " + sal5.calculateAfterTax());
+		System.out.println("  "+ sal6.getSalary() + "   " + sal6.calculateTax() + "  \t " + sal6.calculateAfterTax());
+		
 	}
 
 }
