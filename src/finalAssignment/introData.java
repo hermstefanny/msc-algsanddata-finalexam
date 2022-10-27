@@ -18,8 +18,8 @@ public class introData {
 		char c2 = 'y';
 
 		// DATA OF DEPARTMENTS
+		System.out.println("DATA OF DEPARTMENTS: ");
 		while (c1 == 'y') {
-			System.out.println("DATA OF DEPARTMENTS: ");
 			System.out.println("Please add the NAME of the department: ");
 			nameDep = sc.next();
 			System.out.println("Please add the ADDRESS of the department: ");
@@ -35,9 +35,9 @@ public class introData {
 
 		}
 
+		System.out.println("DATA OF EMPLOYEES: ");
 		while (c2 == 'y') {
-			System.out.println("DATA OF EMPLOYEES: ");
-
+			
 			System.out.println("Please add the  FIRST NAME of the employee: ");
 			String firstNameEmp = sc.next();
 
@@ -66,7 +66,7 @@ public class introData {
 		}
 		sc.close();
 
-		System.out.println("Departments");
+		System.out.println("DEPARTMENTS");
 		System.out.println("| Department ID | " + "Department Name" + " | Department Address |");
 		for (int i = 0; i < departments.size(); i++) {
 			System.out.println("\t" + departments.get(i).getDepartmentID() + "\t" + "\t"
@@ -79,7 +79,7 @@ public class introData {
 		for (int i = 0; i < employees.size(); i++) {
 			System.out.println("\t" + employees.get(i).getEmployeeID() + "\t" 
 					+ employees.get(i).getEmployeeFirstName() + "\t\t" + employees.get(i).getEmployeeLastName()
-					+ "\t\t" + employees.get(i).getEmployeeDepartmentID() + "\t" 
+					+ "\t\t" + employees.get(i).getEmployeeDepartmentID() + "\t\t" 
 					+ employees.get(i).getEmployeeGrossSalary());
 		}
 
