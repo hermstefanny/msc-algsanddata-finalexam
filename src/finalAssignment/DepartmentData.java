@@ -36,7 +36,7 @@ public class DepartmentData {
 	}
 	
 	static public boolean verifyDepartmentID(int depIDIn) {
-		if (depIDIn <depCount) {
+		if (depIDIn > 0 && depIDIn <depCount) {
 			isDepartment = true;
 		}		
 		else {

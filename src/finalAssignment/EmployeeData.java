@@ -8,6 +8,14 @@ public class EmployeeData {
 	private int employeeID;
 	static private int empCount = 1;
 	
+	//Attributes for Tax Calculation
+	double[] incomeTax = { 150000, 50270, 12570, 0 };
+	double[] rateTax = { 0.45, 0.4, 0.2, 0 };
+	private double calculatedTax = 0;
+	private double salaryAfterTax = 0;
+	
+	
+	//METHODS
 	public EmployeeData(String employeeFirstNameIn, String employeeLastNameIn, double grossSalaryIn, int employeeDepartmentIDIn) {
 		employeeFirstName = employeeFirstNameIn;
 		employeeLastName = employeeLastNameIn ;
@@ -35,5 +43,35 @@ public class EmployeeData {
 	
 	public int getEmployeeID() {
 		return employeeID;
+	}
+	
+	//Methods for tax Calculation
+	public double calculateTax() {
+		
+		double[] auxTable =  {(incomeTax[0]-incomeTax[1])*rateTax[1], 
+							  (incomeTax[1]-incomeTax[2])*rateTax[2], 
+							  (incomeTax[2]-incomeTax[3])*rateTax[3]};
+		
+		double firstValue=0;
+		double auxValue=0;
+		int i = 0;
+		while (grossSalary - incomeTax[i] < 0) {
+			i++;
+		}
+		
+		 firstValue = (grossSalary - incomeTax[i]) * rateTax[i];
+		
+		 for (int j = 0; j < auxTable.length - i; j++) {
+			auxValue = auxValue + auxTable[i+j];
+		}
+		 
+		calculatedTax = firstValue + auxValue;
+		
+		return calculatedTax;
+	}
+	
+	public double calculateAfterTax() {
+		salaryAfterTax = grossSalary - calculatedTax;
+		return salaryAfterTax;
 	}
 }
