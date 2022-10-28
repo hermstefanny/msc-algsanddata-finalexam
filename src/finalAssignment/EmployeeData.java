@@ -9,10 +9,15 @@ public class EmployeeData {
 	static private int empCount = 1;
 	
 	//Attributes for Tax Calculation
-	double[] incomeTax = { 150000, 50270, 12570, 0 };
-	double[] rateTax = { 0.45, 0.4, 0.2, 0 };
+	private double personalAllowance = 12570;
+	private double deductableLimit = 125140;
+	double[] incomeTax = { 150000, 50270, 12570, 0};
+	double[] rateTax = { 0.45, 0.4, 0.2, 0};
 	private double calculatedTax = 0;
 	private double salaryAfterTax = 0;
+	private double taxableSalary = 0;
+	
+	
 	
 	
 	//METHODS
@@ -48,6 +53,16 @@ public class EmployeeData {
 	//Methods for tax Calculation
 	public double calculateTax() {
 		
+		if (grossSalary >= deductableLimit) {
+			for (int i = 0; i < incomeTax.length; i++) {
+				if (incomeTax[i] > personalAllowance) {
+					incomeTax[i] = incomeTax[i] - personalAllowance;
+				} else {
+					incomeTax[i] = 0;
+				}
+			}
+		}
+		
 		double[] auxTable =  {(incomeTax[0]-incomeTax[1])*rateTax[1], 
 							  (incomeTax[1]-incomeTax[2])*rateTax[2], 
 							  (incomeTax[2]-incomeTax[3])*rateTax[3]};
@@ -74,4 +89,6 @@ public class EmployeeData {
 		salaryAfterTax = grossSalary - calculatedTax;
 		return salaryAfterTax;
 	}
+	
+	
 }

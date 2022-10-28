@@ -3,6 +3,18 @@ package finalAssignment;
 import java.util.*;
 
 public class SortEmployees {
+	
+	public void printArrayList(ArrayList<EmployeeData> Emp) {
+		System.out.println("Printing array of Employees");
+		for (int i = 0; i < Emp.size(); i++) {
+			System.out.println("Employee ID" + Emp.get(i).getEmployeeID()+
+							   "Name " + Emp.get(i).getEmployeeFirstName() + 
+							   "Last Name" + Emp.get(i).getEmployeeLastName()+
+		                       "Department ID" + Emp.get(i).getEmployeeDepartmentID()+
+							   "Salary " + Emp.get(i).getEmployeeGrossSalary());
+		}
+	}
+	
 	static ArrayList<EmployeeData> empTest = new ArrayList<EmployeeData>();
 
 	EmployeeData emp1 = new EmployeeData("Ady", "Sin", 300000, 1);
@@ -25,12 +37,9 @@ public class SortEmployees {
 		empTest.add(emp7);
 	}
 
-	public void mergeElements(ArrayList<EmployeeData> A, int p, int q, int r) {
+	public void mergeElementsSalary(ArrayList<EmployeeData> A, int p, int q, int r) {
 		int n1 = q - p + 1;
 		int n2 = r - q;
-		
-		//A.subList(p, q + 1) from index inclusive - to index exclusive
-		//A.subList(q + 1, r + 1)
 
 		ArrayList<EmployeeData> L = new ArrayList<EmployeeData>();
 		ArrayList<EmployeeData> R = new ArrayList<EmployeeData>();
@@ -77,18 +86,9 @@ public class SortEmployees {
 			int q = (p + r) / 2;
 			mergeSort(A, p, q);
 			mergeSort(A, q + 1, r);
-			mergeElements(A, p, q, r);
+			mergeElementsSalary(A, p, q, r);
 
 		}
-	}
-
-	public void printArrayList(ArrayList<EmployeeData> Emp) {
-		System.out.println("Printing array");
-		for (int i = 0; i < Emp.size(); i++) {
-			System.out.println(
-					"Name " + Emp.get(i).getEmployeeFirstName() + " Salary " + Emp.get(i).getEmployeeGrossSalary());
-		}
-
 	}
 
 	public static void main(String args[]) {

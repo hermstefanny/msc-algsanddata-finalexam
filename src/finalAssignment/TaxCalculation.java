@@ -9,6 +9,8 @@ public class TaxCalculation {
 	private double salary;
 	private double calculatedTax = 0;
 	private double salaryAfterTax = 0;
+	private double personalAllowance = 12570;
+	private double deductableLimit = 125140;
 
 	// METHODS
 	// Construct
@@ -21,29 +23,40 @@ public class TaxCalculation {
 	}
 
 	public double calculateTax() {
-		
-		double[] auxTable =  {(incomeTax[0]-incomeTax[1])*rateTax[1], 
-							  (incomeTax[1]-incomeTax[2])*rateTax[2], 
-							  (incomeTax[2]-incomeTax[3])*rateTax[3]};
-		
-		double firstValue=0;
-		double auxValue=0;
-		int i = 0;
-		while (salary - incomeTax[i] < 0) {
-			//System.out.println("en el while "+ (salary - incomeTax[i]) + i);
-			i++;
+
+		if (salary >= deductableLimit) {
+			// The upper bound it's always maintained, so it starts from 1
+			for (int i = 1; i < incomeTax.length; i++) {
+				if (incomeTax[i] > personalAllowance) {
+					incomeTax[i] = incomeTax[i] - personalAllowance;
+				} else {
+					incomeTax[i] = 0;
+				}
+			}
+		}
+
+		double[] totalTaxesByBand = new double[incomeTax.length - 1];
+		for (int i=0; i < incomeTax.length - 1; i++) {
+			totalTaxesByBand[i] = rateTax[i+1] * (incomeTax[i] - incomeTax[i+1]);
 		}
 		
-		 firstValue = (salary - incomeTax[i]) * rateTax[i];
-		//System.out.println("Calculated before for "+ calculatedTax +" the index is "+ i);
-		
-		for (int j = 0; j < auxTable.length - i; j++) {
-			auxValue = auxValue + auxTable[i+j];
+		double taxInLowerBands = 0;
+		int salaryBandIndex = 0;
+		while (salary - incomeTax[salaryBandIndex] < 0) {
+			salaryBandIndex++;
 		}
-		calculatedTax = firstValue + auxValue;
+
+		double taxInTheSalaryBand = (salary - incomeTax[salaryBandIndex]) * rateTax[salaryBandIndex];
+		// System.out.println("Calculated before for "+ calculatedTax +" the index is "+
+		// i);
+
+		for (int j = 0; j < totalTaxesByBand.length - salaryBandIndex; j++) {
+			taxInLowerBands = taxInLowerBands + totalTaxesByBand[salaryBandIndex + j];
+		}
+		calculatedTax = taxInTheSalaryBand + taxInLowerBands;
 		return calculatedTax;
 	}
-	
+
 	public double calculateAfterTax() {
 		salaryAfterTax = salary - calculatedTax;
 		return salaryAfterTax;
