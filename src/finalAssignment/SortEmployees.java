@@ -26,12 +26,23 @@ public class SortEmployees {
 	}
 
 	public void mergeElements(ArrayList<EmployeeData> A, int p, int q, int r) {
-		int n1 = q - p;
-		int n2 = r - q + 1;
+		int n1 = q - p + 1;
+		int n2 = r - q;
+		
+		//A.subList(p, q + 1) from index inclusive - to index exclusive
+		//A.subList(q + 1, r + 1)
 
-		ArrayList<EmployeeData> L = new ArrayList<EmployeeData>(A.subList(p, q + 1));
-		ArrayList<EmployeeData> R = new ArrayList<EmployeeData>(A.subList(q + 1, r + 1));
+		ArrayList<EmployeeData> L = new ArrayList<EmployeeData>();
+		ArrayList<EmployeeData> R = new ArrayList<EmployeeData>();
 
+		for (int i=0; i<n1; i++) {
+			L.add(A.get(p+i));
+		}
+		
+		for (int j=0; j<n2; j++) {
+			R.add(A.get(q+j+1));
+		}
+		
 		System.out.println("Left side");
 		for (int i = 0; i < L.size(); i++) {
 			System.out.println(L.get(i).getEmployeeFirstName());
