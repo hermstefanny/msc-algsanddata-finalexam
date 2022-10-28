@@ -30,7 +30,12 @@ public class DepartmentData {
 	public String getDepartmentName() {
 		return departmentName;
 	}
-	
+
+	public String getDepartmentNameByID(int depIDIn) {
+		if (depIDIn == departmentID)
+			return departmentName;
+		else {return " ";}
+	}
 	public String getDepartmentAddress() {
 		return departmentAddress;
 	}

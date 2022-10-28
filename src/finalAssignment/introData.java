@@ -1,9 +1,15 @@
 package finalAssignment;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class introData {
+	
+	ArrayList<EmployeeData> sortedArrayBySalary= new ArrayList<EmployeeData>();
+	
+	public ArrayList sortBySalary(ArrayList <EmployeeData> empIn) {
+	 
+		return sortedArrayBySalary;
+	}
 
 	public static void main(String args[]) {
 		ArrayList<DepartmentData> departments = new ArrayList<DepartmentData>();
@@ -77,10 +83,10 @@ public class introData {
 		sc.close();
 
 		System.out.println("DEPARTMENTS");
-		System.out.println("| Department ID | " + "Department Name" + " | Department Address |");
+		System.out.println("| Department ID | " + "  Department Name  " + " |      Department Address      |");
 		for (int i = 0; i < departments.size(); i++) {
-			System.out.println("\t" + departments.get(i).getDepartmentID() + "\t"
-					+ departments.get(i).getDepartmentName() + "\t" + departments.get(i).getDepartmentAddress());
+			System.out.println("\t" + departments.get(i).getDepartmentID() + "\t  "
+					+ departments.get(i).getDepartmentName() + "\t\t" + departments.get(i).getDepartmentAddress());
 		}
 
 		System.out.println("EMPLOYEES");
@@ -90,8 +96,15 @@ public class introData {
 			System.out.println("\t" + employees.get(i).getEmployeeID() + "\t" + employees.get(i).getEmployeeFirstName()
 					+ "\t\t" + employees.get(i).getEmployeeLastName() + "\t\t"
 					+ employees.get(i).getEmployeeDepartmentID() + "\t" + employees.get(i).getEmployeeGrossSalary()
-					+ "\t" + employees.get(i).calculateTax() + "\t" + employees.get(i).calculateAfterTax());
+					+ "\t\t" + employees.get(i).calculateTax() + "\t\t" + employees.get(i).calculateAfterTax());
 		}
+		
+		System.out.println("SORTED BY SALARY");
+		/*employees.sort(Comparator.comparing(EmployeeData::getEmployeeGrossSalary));
+		for (int i = 0; i < employees.size(); i++) {
+			System.out.println("Name" + employees.get(i).getEmployeeFirstName() +
+		"Salary"+ employees.get(i).getEmployeeGrossSalary());
+		}*/
 
 	}
 }
